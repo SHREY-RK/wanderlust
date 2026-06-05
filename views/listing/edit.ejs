@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Property Listing</title>
+  <link rel="stylesheet" href="/css/addStyle.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>edit old Listing</h2>
+    <p class="subtitle">Enter the new property details below.</p>
+
+    <form method="POST" action="/listings/<%= data._id %>?_method=PUT" >
+      
+      <div class="form-group">
+        <label for="title">Property Title</label>
+        <input type="text" id="title"   placeholder= "<%= data.title %>" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Escape to this charming beachfront cottage..." value=<%= data.description %>></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label for="price">Price ($)</label>
+          <input type="number" id="price" name="price" placeholder="1500" min="0" value=<%= data.price %>>
+        </div>
+        
+        <div class="form-group half-width">
+          <label for="image">Listing Image</label>
+          <input type="text" id="image" name="url"  >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label for="location">Location (City)</label>
+          <input type="text" id="location"  placeholder="<%= data.location %>" readonly>
+        </div>
+        
+        <div class="form-group half-width">
+          <label for="country">Country</label>
+          <input type="text" id="country" placeholder="<%= data.country %>" readonly>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Save Listing</button>
+
+    </form>
+  </div>
+
+</body>
+</html>

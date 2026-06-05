@@ -1,0 +1,230 @@
+/* Base Page Setup */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/* Navigation Bar */
+.navbar {
+    border-bottom: 1px solid #ebebeb;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff385c;
+}
+
+/* Main Page Container */
+.property-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Header Section */
+.property-header {
+    margin-bottom: 24px;
+}
+
+.property-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.property-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Hero Image */
+.property-hero {
+    width: 100%;
+    height: 60vh; /* Takes up 60% of the screen height */
+    min-height: 400px;
+    max-height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.property-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: -1;
+}
+.card-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #222;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.icon{
+    display: flex;
+    color: white;
+    z-index: 11;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #12121291;
+    color: black;
+    /* height: 2rem; */
+    /* width: 2rem; */
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    justify-content: center;
+    padding: 0.3rem;
+    cursor: pointer;
+} 
+.icon i, .icon a{
+    margin: 0;
+    padding: 0 0.2rem;
+    justify-self: center;
+    align-self: center;
+    color: white;
+    text-decoration: none;
+}
+.icon i{
+    font-size: 1.25rem;
+}
+/* Grid Layout (Left Content, Right Sidebar) */
+.property-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Left takes 2 parts, right takes 1 part */
+    gap: 80px;
+}
+
+/* Left Side Content */
+.host-info h2 {
+    font-size: 1.35rem;
+    margin: 0 0 4px 0;
+}
+
+.host-info p {
+    margin: 0;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #ebebeb;
+    margin: 32px 0;
+}
+
+.description-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.description-section p {
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+}
+
+/* Right Side: Sticky Booking Widget */
+.booking-sidebar {
+    position: relative;
+}
+
+.booking-widget {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    
+    /* This makes the box follow you as you scroll */
+    position: sticky;
+    top: 100px; 
+}
+
+.widget-price {
+    margin-bottom: 24px;
+    color: black;
+}
+
+.widget-price strong {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.widget-price span {
+    font-size: 1rem;
+    color: #717171;
+}
+
+.book-btn {
+    width: 100%;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.book-btn:hover {
+    background-color: #e31c5f;
+}
+
+.charge-note {
+    text-align: center;
+    color: #717171;
+    font-size: 0.875rem;
+    margin-top: 16px;
+}
+
+.btn {
+    margin-left: 48%;
+}
+
+/* Responsive Design for Mobile (Stacks everything) */
+@media (max-width: 768px) {
+    .property-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .property-hero {
+        height: 300px;
+    }
+    
+    /* Make the widget normal on mobile instead of sticky */
+    .booking-widget {
+        position: static;
+    }
+}

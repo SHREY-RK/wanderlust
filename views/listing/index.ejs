@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All places</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="header-section">
+        <h1>The Secret to Clean Property Cards</h1>
+        <p>Smart Text Truncation in Action</p>
+    </div>
+    <div class="add">
+        <a href="/listings/new">Add property</a>
+    </div>
+    <div class="main">
+
+        <% for (place of data) { %>
+    
+            <div class="listing-card">
+                <div class="card-image-wrapper"  onclick="window.location.href='/listings/<%= place._id %>/view'">
+                    <img src=<%=place.image.url %> alt=<%= place.title%> class="card-image">
+                    <% if (place.country != "United States") { %>
+                        <div class="card-badge" style="display: none;">Superhost</div>
+                    <% } else { %>
+                        <div class="card-badge">Superhost</div>
+                    <% } %>
+                </div>
+    
+                <div class="card-content">
+                    <div class="card-location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <%= place.location%>, <%= place.country %>
+                    </div>
+    
+                    <h2 class="card-title">
+                        <%= place.title %>
+                    </h2>
+    
+                    <p class="card-description">
+                        <%= place.description %>
+                    </p>
+    
+                    <div class="card-footer">
+                        <div class="card-price">
+                            <strong>$<%= place.price %></strong> <span>/ night</span>
+                        </div>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+    </div>
+    <script src="/index.js"></script>
+</body>
+
+</html>

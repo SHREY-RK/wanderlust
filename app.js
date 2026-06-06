@@ -63,8 +63,7 @@ app.put("/listings/:id", async (req, res)=> {
         await Listing.findByIdAndUpdate(id, {description: description});
     }
     if (url!="") {
-        await Listing.findByIdAndUpdate(id, {"image.url": url}, {new: true}).then((data)=> {
-        });
+        await Listing.findByIdAndUpdate(id, {"image.url": url},{ returnDocument: "after" });
     }
     res.redirect(`/listings/${id}/view`);
 })

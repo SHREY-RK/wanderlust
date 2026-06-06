@@ -1,0 +1,22 @@
+#logo {
+    color: #ff385c;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    margin-right: 1.15rem;
+}
+
+.footer-info {
+    width: 100%;
+    /* height: 55%; */
+    background-color: rgb(255, 251, 251);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    margin-top: 5rem;
+}
+
+.footer-main p {
+    margin: 0;
+}

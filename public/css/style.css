@@ -1,10 +1,10 @@
 /* Base styles for the body just to center the card for preview */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #000;
+    background-color: #e6e4e4;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    /* padding: 20px; */
     color: #fff;
 }
 .add a{
@@ -22,13 +22,9 @@ body {
 .add {
     text-align: right;
 }
-.header-section {
-    text-align: center;
-    color: #fff;
-}
 .main {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 /* Card Container */
@@ -36,7 +32,7 @@ body {
     background: #ffffff;
     border-radius: 16px;
     width: 100%;
-    max-width: 380px;
+    max-width: 330px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -64,7 +60,7 @@ body {
 }
 
 .listing-card:hover .card-image {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 /* Optional Badge Overlay */

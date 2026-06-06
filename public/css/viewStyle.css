@@ -1,15 +1,15 @@
 /* Base Page Setup */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
+    background-color: #e6e4e4;
+    color: #000000;
     margin: 0;
     padding: 0;
     line-height: 1.5;
 }
 
 /* Navigation Bar */
-.navbar {
+/* .navbar {
     border-bottom: 1px solid #ebebeb;
     padding: 20px 0;
     position: sticky;
@@ -28,7 +28,7 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: #ff385c;
-}
+} */
 
 /* Main Page Container */
 .property-page {
@@ -92,16 +92,14 @@ body {
 }
 .icon{
     display: flex;
-    color: white;
     z-index: 11;
     position: absolute;
     right: 5px;
     top: 5px;
-    background-color: #12121291;
-    color: black;
+    background-color: #ffffffa5;
+    color: #ff385c;
     /* height: 2rem; */
     /* width: 2rem; */
-    border: 1px solid white;
     border-radius: 0.5rem;
     justify-content: center;
     padding: 0.3rem;
@@ -112,7 +110,7 @@ body {
     padding: 0 0.2rem;
     justify-self: center;
     align-self: center;
-    color: white;
+    color: #ff385c;
     text-decoration: none;
 }
 .icon i{

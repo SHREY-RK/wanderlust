@@ -1,50 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Property Listing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/addStyle.css">
 </head>
+
 <body>
+  <div id="nav">
+    <%- include("../includes/navbar.ejs") %>
+  </div>
 
   <div class="form-container">
     <h2>Create New Listing</h2>
     <p class="subtitle">Enter the property details below.</p>
 
-    <form action="/listings" method="POST">
-      
+    <form action="/listings" method="POST" class="needs-validation" novalidate>
+
       <div class="form-group">
         <label for="title">Property Title</label>
-        <input type="text" id="title" name="listing[title]" placeholder="e.g., Cozy Beachfront Cottage" required>
+        <input type="text" id="title" name="listing[title]" placeholder="e.g., Cozy Beachfront Cottage"
+          class="form-control" required>
+        <div class="invalid-feedback">please enter property name</div>
       </div>
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" name="listing[description]" rows="4" placeholder="Escape to this charming beachfront cottage..." required></textarea>
+        <textarea id="description" name="listing[description]" rows="4"
+          placeholder="Escape to this charming beachfront cottage..." required class="form-control"></textarea>
+        <div class="invalid-feedback">please enter description</div>
       </div>
 
       <div class="form-row">
         <div class="form-group half-width">
           <label for="price">Price ($)</label>
-          <input type="number" id="price" name="listing[price]" placeholder="1500" min="0" required>
+          <input type="number" id="price" name="listing[price]" placeholder="1500" min="0" required
+            class="form-control">
+          <div class="invalid-feedback">please enter price </div>
         </div>
         
         <div class="form-group half-width">
           <label for="image">Listing Image</label>
-          <input type="text" id="image" name="listing[image][url]"  >
+          <input type="text" id="image" name="listing[image][url]" class="form-control">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group half-width">
           <label for="location">Location (City)</label>
-          <input type="text" id="location" name="listing[location]" placeholder="e.g., Malibu" required>
+          <input type="text" id="location" name="listing[location]" placeholder="e.g., Malibu" required
+            class="form-control">
+          <div class="invalid-feedback">please enter property location</div>
         </div>
-        
+
+
         <div class="form-group half-width">
           <label for="country">Country</label>
-          <input type="text" id="country" name="listing[country]" placeholder="e.g., United States" required>
+          <input type="text" id="country" name="listing[country]" placeholder="e.g., United States" required
+            class="form-control">
+          <div class="invalid-feedback">please enter property country</div>
         </div>
       </div>
 
@@ -52,6 +71,12 @@
 
     </form>
   </div>
+  <div id="footer">
+    <%- include("../includes/footer.ejs") %>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/form.js"></script>
 </body>
+
 </html>

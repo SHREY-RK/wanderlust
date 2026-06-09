@@ -22,3 +22,8 @@ In Phase 1, I built the foundation of the Wanderlust website, a platform that sh
 ### Outcome
 
 This phase focused on setting up the backend architecture, database integration, and core listing management functionality of the Wanderlust platform.
+
+
+## Phase 2 (i): Navbar & Footer
+
+In this phase, I added a reusable Navbar and Footer to the Wanderlust website using EJS partials. This improved navigation, maintained a consistent layout across pages, and enhanced the overall user experience.

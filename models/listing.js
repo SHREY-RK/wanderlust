@@ -14,7 +14,10 @@ const listingSchema = new mongoose.Schema({
         },
         url: {
             type: String,
-            default: DEFAULT_IMAGE
+            default: DEFAULT_IMAGE,
+            set: (v) => {
+                return v==="" ? DEFAULT_IMAGE: v;
+            }
         }
     },
     price: Number,

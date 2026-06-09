@@ -1,7 +1,7 @@
 /* Base styles for the body just to center the card for preview */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #e6e4e4;
+    background-color: #efe9e9 !important;
     min-height: 100vh;
     margin: 0;
     /* padding: 20px; */

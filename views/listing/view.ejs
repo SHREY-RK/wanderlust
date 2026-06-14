@@ -12,7 +12,7 @@
 
 <body>
     <%- include("../includes/navbar.ejs")%>
-
+    <%- include("../includes/flash.ejs") %>
     <!-- <nav class="navbar">
         <div class="nav-container">
             <div class="logo">OasisStays</div>
@@ -38,10 +38,8 @@
         </header>
 
         <div class="property-hero">
-            <div class="icon" >
-                <a href="/listings/<%= data._id %>/edit">Edit</a><i class="fa-solid fa-pen-to-square"></i>
-            </div>
-            
+
+
             <% if (data.country !="United States" ) { %>
                 <div class="card-badge" style="display: none;">Superhost</div>
             <% } else { %>
@@ -78,7 +76,7 @@
                 <div class="booking-widget">
                     <div class="widget-header">
                         <div class="widget-price">
-                            <strong>$<%= data.price %></strong> <span>night</span>
+                            <strong>$<%= data.price.toLocaleString("en-US") %></strong> <span>night</span>
                         </div>
                     </div>
 
@@ -89,11 +87,51 @@
             </aside>
 
         </div>
-        <form method="post" action="/listings/<%= data._id %>/delete?_method=DELETE">
-            <button type="submit" class="btn btn-danger">Delete</button>
+        <form method="post" action="/listings/<%= data._id %>/delete?_method=DELETE" class="btns">
+            <button type="submit" class="btn btn-danger delete">Delete</button>
+            <div class="btn edit" >
+                <a href="/listings/<%= data._id %>/edit">Edit</a>
+            </div>
         </form>
+        <hr>
+        <div class="review mb-3 mt-3">
+            <h4>Leave a review</h4>
+            <form method="post" action="/listings/<%= data._id%>/reviews" novalidate class="needs-validation">
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" id="rating" min="1" max="5" step="1" name="review[rating]" class="form-range">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea type="text" id="comment" name="review[comment]" class="form-control" rows="4" required></textarea>
+                    <div class="invalid-feedback">enter a valid comment</div>
+                </div>
+                <button class="btn btn-outline-dark">Submit</button>
+            </form>
+        </div>
+        <hr>
+        <div class="show-review mt-3 mb-3">
+            <h4>All review</h4>
+            <div class="row">
+
+                <% for (review of data.reviews) { %>
+                    <div class="card mt-2 ms-3 col-5">
+                        <div class="card-body">
+                            <h5 class="card-title">David</h5>        
+                            <p class="card-text"><%= review.comment %></p>
+                            <p class="card-text"><%= review.rating %>&#9733;</p>
+                            <form method="post" action="/listings/<%=data._id%>/reviews/<%=review._id%>?_method=DELETE">
+                                <button class="btn btn-dark btn-sm"><i class="fa-solid fa-trash"></i>delete</button>
+                            </form>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
     </main>
     <%- include("../includes/footer.ejs") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/form.js"></script>
 </body>
 
 </html>

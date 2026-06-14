@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Property Listing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/addStyle.css">
@@ -26,7 +26,8 @@
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="4" placeholder="Escape to this charming beachfront cottage..." value=<%= data.description %> class="form-control"></textarea>
+        <textarea id="description" name="description" rows="4" placeholder="Escape to this charming beachfront cottage..." class="form-control" required><%= data.description %></textarea>
+        <div class="invalid-feedback">please enter a description</div>
       </div>
 
       <div class="form-row">
@@ -37,8 +38,7 @@
         
         <div class="form-group half-width">
           <label for="image">Listing Image</label>
-          <input type="text" id="image" name="url"  class="form-control" required>
-          <div class="invalid-feedback">plase enter image link</div>
+          <input type="text" id="image" name="url"  class="form-control">
         </div>
       </div>
 

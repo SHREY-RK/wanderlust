@@ -2,9 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
-const wrapAsync = require("./utils/wrapAsync.js");
+// const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const listingSchema = require("./schema");
+// const { listingSchema, reviewSchema } = require("./schema");
+
+const listing = require("./routes/listing.js");
+const review = require("./routes/review.js"); 
+
+const session = require("express-session");
+const flash = require("connect-flash");
+
 const app = express();
 
 const PORT=8080;
@@ -16,17 +23,33 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride("_method"));
 
-const Listing = require("./models/listing.js");
+// models
+// const Listing = require("./models/listing.js");
+// const Review = require("./models/review.js");
 
-const validateListing = (req, res, next)=> {
-    let result = listingSchema.validate(req.body);
+const sessionOption = {
+  secret: "mysupersecretkey",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true
+  },
+};
+app.use(session(sessionOption));
+app.use(flash());
 
-    if(result.error) {
-        throw new ExpressError(400, result.error);
-    } else {
-        next();
-    }
-}
+app.use((req, res, next) => {
+    res.locals.message = req.flash("message");
+    res.locals.deleteListing = req.flash("deleteListing");
+    res.locals.error = req.flash("error");
+    next();
+})
+
+//rotes
+app.use("/listings", listing)
+app.use("/listings/:id/reviews", review);
 
 // connect with database
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
@@ -36,57 +59,6 @@ mongoose.connect(MONGO_URL)
     console.log("database connected");
 })
 
-//API request
-
-//home page all property
-app.get("/listings", async (req, res)=> {
-    let data = await Listing.find();
-    res.render("listing/index.ejs", {data});
-})
-
-//for detail view of property
-app.get("/listings/:id/view", wrapAsync(async (req, res)=> {
-    let {id} = req.params;
-    const data = await Listing.findById(id);
-    res.render("listing/view.ejs", {data, id});
-}))
-
-//new property adding and collect data
-app.get("/listings/new", (req, res)=> {
-    res.render("listing/add.ejs");
-})
-app.post("/listings", validateListing, wrapAsync(async (req, res, next)=> {
-    await Listing.insertOne(req.body.listing);
-    res.redirect("/listings");
-})) 
-
-//edit property
-app.get("/listings/:id/edit", wrapAsync(async (req, res)=> {
-    let {id} = req.params;
-    let data = await Listing.findById(id);
-    res.render("listing/edit.ejs", {data});
-}))
-app.put("/listings/:id", wrapAsync(async (req, res)=> {
-    let {id} = req.params;
-    let {description, price, url} = req.body;
-    if (price!="") {
-        await Listing.findByIdAndUpdate(id, {price: price});
-    }
-    if (description!="") {
-        await Listing.findByIdAndUpdate(id, {description: description});
-    }
-    if (url!="") {
-        await Listing.findByIdAndUpdate(id, {"image.url": url},{ returnDocument: "after" });
-    }
-    res.redirect(`/listings/${id}/view`);
-}))
-
-//delete property
-app.delete("/listings/:id/delete", wrapAsync(async (req, res)=> {
-    let {id} = req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-}))
 
 //if request not satisfy 
 app.use((req, res, next)=> {

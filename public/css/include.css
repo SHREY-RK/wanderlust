@@ -8,8 +8,8 @@
 .footer-info {
     width: 100%;
     /* height: 55%; */
-    background-color: rgb(255, 251, 251);
-    padding: 1rem;
+    background-color: #f8f9fa;
+    padding: 1rem 0 2.5rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;

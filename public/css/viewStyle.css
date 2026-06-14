@@ -60,21 +60,25 @@ body {
 /* Hero Image */
 .property-hero {
     width: 100%;
-    height: 60vh; /* Takes up 60% of the screen height */
+    height: 50vh; /* Takes up 60% of the screen height */
     min-height: 400px;
     max-height: 600px;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 40px;
+    display: flex;
     position: relative;
+    justify-content: center;
+    background-color: #e9e5e583;
+    padding: 2px;
 }
 
 .property-hero img {
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: cover;
     position: relative;
-    z-index: -1;
+    border-radius: 8px;
 }
 .card-badge {
     position: absolute;
@@ -90,32 +94,7 @@ body {
     letter-spacing: 0.5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.icon{
-    display: flex;
-    z-index: 11;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background-color: #ffffffa5;
-    color: #ff385c;
-    /* height: 2rem; */
-    /* width: 2rem; */
-    border-radius: 0.5rem;
-    justify-content: center;
-    padding: 0.3rem;
-    cursor: pointer;
-} 
-.icon i, .icon a{
-    margin: 0;
-    padding: 0 0.2rem;
-    justify-self: center;
-    align-self: center;
-    color: #ff385c;
-    text-decoration: none;
-}
-.icon i{
-    font-size: 1.25rem;
-}
+
 /* Grid Layout (Left Content, Right Sidebar) */
 .property-grid {
     display: grid;
@@ -206,8 +185,23 @@ body {
     margin-top: 16px;
 }
 
-.btn {
-    margin-left: 48%;
+/* form btns */
+.btns {
+    margin-top: 5%;
+    margin-bottom: 5rem;
+}
+.edit {
+    width: 4.2rem;
+    background-color: #000 !important;
+    margin-left: 4%;
+}
+.edit a{
+    margin: 0;
+    color: #fff !important;
+    text-decoration: none;
+}
+.delete {
+    margin-left: 38%;
 }
 
 /* Responsive Design for Mobile (Stacks everything) */

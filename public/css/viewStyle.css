@@ -1,34 +1,12 @@
 /* Base Page Setup */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #e6e4e4;
+    background-color: #ffffff;
     color: #000000;
     margin: 0;
     padding: 0;
     line-height: 1.5;
 }
-
-/* Navigation Bar */
-/* .navbar {
-    border-bottom: 1px solid #ebebeb;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 100;
-}
-
-.nav-container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ff385c;
-} */
 
 /* Main Page Container */
 .property-page {

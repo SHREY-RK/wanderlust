@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError.js");
+const wrapAsync = require("./utils/wrapAsync.js");
 // const { listingSchema, reviewSchema } = require("./schema");
 const ejsMate = require("ejs-mate");
 
@@ -16,11 +17,9 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-const wrapAsync = require("./utils/wrapAsync.js");
-
-const app = express();
 
 const PORT=8080;
+const app = express();
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -58,6 +57,7 @@ app.use((req, res, next) => {
     res.locals.message = req.flash("message");
     res.locals.deleteListing = req.flash("deleteListing");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 })
 app.get("/", (req, res) => {

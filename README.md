@@ -209,3 +209,32 @@ routes/
 ## Outcome
 
 This phase enhanced the user experience by providing real-time feedback through flash messages and improved the project's structure by organizing routes into separate router modules.
+
+
+# Phase 5: Authentication & Authorization
+
+## Features Added
+
+* User Signup, Login, and Logout functionality.
+* Session-based authentication using Passport.js.
+* Only logged-in users can create listings and reviews.
+* Only listing owners can edit or delete their listings.
+* Only review authors can delete their reviews.
+* Flash messages for authentication and authorization errors.
+
+## Database Updates
+
+* Added `owner` field to Listings.
+* Added `author` field to Reviews.
+* Created a User model for authentication.
+
+## Technologies Used
+
+* Passport.js
+* Passport-Local-Mongoose
+* Express Session
+* Connect Flash
+
+## Outcome
+
+Implemented secure authentication and authorization to protect listings and reviews from unauthorized access and modifications.

@@ -305,7 +305,7 @@ const sampleListings = [
       "Spend your days by the lake in this cozy cabin in the scenic White Mountains of New Hampshire.",
     image: {
       filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+      url: "https://images.pexels.com/photos/19119701/pexels-photo-19119701.jpeg",
     },
     price: 1200,
     location: "New Hampshire",
@@ -329,7 +329,7 @@ const sampleListings = [
       "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
     image: {
       filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxha2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+      url: "https://img.magnific.com/free-photo/luxurious-villa-with-modern-architectural-design_23-2151694089.jpg?t=st=1781575863~exp=1781579463~hmac=d93a47cab88c19878bb944fadcb92ea525ed98547e8e1e28737f68b1e12cdd35&w=1480",
     },
     price: 4000,
     location: "Aspen",
@@ -341,7 +341,7 @@ const sampleListings = [
       "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
     image: {
       filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      url: "https://img.magnific.com/free-photo/luxurious-villa-with-modern-architectural-design_23-2151694123.jpg?ga=GA1.1.132845743.1781565901&semt=ais_test_c&w=740&q=80",
     },
     price: 1800,
     location: "Costa Rica",

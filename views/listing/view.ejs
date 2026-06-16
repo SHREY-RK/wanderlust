@@ -7,6 +7,11 @@
             <h1 class="property-title">
                 <%= data.title %>
             </h1>
+            <h5>Owned by <i>
+                    <%= data.owner.username %>
+                </i>
+            </h5>
+            
             <div class="property-location">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -69,28 +74,33 @@
             </aside>
 
         </div>
-        <form method="post" action="/listings/<%= data._id %>/delete?_method=DELETE" class="btns">
-            <button type="submit" class="btn btn-danger delete">Delete</button>
-            <div class="btn edit" >
-                <a href="/listings/<%= data._id %>/edit">Edit</a>
-            </div>
-        </form>
-        <hr>
-        <div class="review mb-3 mt-3">
-            <h4>Leave a review</h4>
-            <form method="post" action="/listings/<%= data._id%>/reviews" novalidate class="needs-validation">
-                <div class="mb-3 mt-3">
-                    <label for="rating" class="form-label">Rating</label>
-                    <input type="range" id="rating" min="1" max="5" step="1" name="review[rating]" class="form-range">
+        <% if (currUser && currUser._id.equals(data.owner._id)) { %>
+
+            <form method="post" action="/listings/<%= data._id %>/delete?_method=DELETE" class="btns">
+                <button type="submit" class="btn btn-danger delete">Delete</button>
+                <div class="btn edit" >
+                    <a href="/listings/<%= data._id %>/edit">Edit</a>
                 </div>
-                <div class="mb-3 mt-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <textarea type="text" id="comment" name="review[comment]" class="form-control" rows="4" required></textarea>
-                    <div class="invalid-feedback">enter a valid comment</div>
-                </div>
-                <button class="btn btn-outline-dark">Submit</button>
             </form>
-        </div>
+        <% } %>
+        <% if (currUser) { %>
+            <hr>
+            <div class="review mb-3 mt-3">
+                <h4>Leave a review</h4>
+                <form method="post" action="/listings/<%= data._id%>/reviews" novalidate class="needs-validation">
+                    <div class="mb-3 mt-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="range" id="rating" min="1" max="5" step="1" name="review[rating]" class="form-range">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea type="text" id="comment" name="review[comment]" class="form-control" rows="4" required></textarea>
+                        <div class="invalid-feedback">enter a valid comment</div>
+                    </div>
+                    <button class="btn btn-outline-dark">Submit</button>
+                </form>
+            </div>
+        <% } %>
         <hr>
         <div class="show-review mt-3 mb-3">
             <h4>All review</h4>
@@ -99,7 +109,7 @@
                 <% for (review of data.reviews) { %>
                     <div class="card mt-2 ms-3 col-5">
                         <div class="card-body">
-                            <h5 class="card-title">David</h5>        
+                            <h5 class="card-title">@<%= review.author.username %></h5>        
                             <p class="card-text"><%= review.comment %></p>
                             <p class="card-text"><%= review.rating %>&#9733;</p>
                             <form method="post" action="/listings/<%=data._id%>/reviews/<%=review._id%>?_method=DELETE">

@@ -23,7 +23,6 @@ module.exports.newForm = (req, res) => {
 
 module.exports.sendNewData = async (req, res, next) => {
   const newListing = req.body.listing;
-  console.log(res.locals.currUser);
   if (res.locals.currUser) {
     newListing.owner = res.locals.currUser._id;
   }

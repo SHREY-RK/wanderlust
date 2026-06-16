@@ -21,8 +21,15 @@ const validateListing = (req, res, next) => {
   }
 };
 
-//home page all property
-router.get("/", listingControllers.index);
+router.route("/")
+  .get(listingControllers.index)
+  .post(
+    isLoggedIn,
+    validateListing,
+    wrapAsync(listingControllers.sendNewData),
+  );;
+
+
 
 //for detail view of property
 router.get(
@@ -32,12 +39,7 @@ router.get(
 
 //new property adding and collect data
 router.get("/new", isLoggedIn, listingControllers.newForm);
-router.post(
-  "/",
-  isLoggedIn,
-  validateListing,
-  wrapAsync(listingControllers.sendNewData),
-);
+
 
 //edit property
 router.get(

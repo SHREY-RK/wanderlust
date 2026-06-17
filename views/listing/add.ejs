@@ -7,7 +7,7 @@
     <h2>Create New Listing</h2>
     <p class="subtitle">Enter the property details below.</p>
 
-    <form action="/listings" method="POST" class="needs-validation" novalidate>
+    <form action="/listings" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
 
       <div class="form-group">
         <label for="title">Property Title</label>
@@ -28,15 +28,16 @@
           <label for="price">Price ($)</label>
           <input type="number" id="price" name="listing[price]" placeholder="1500" min="0" required
             class="form-control">
-          <div class="invalid-feedback">please enter price </div>
+          <div class="invalid-feedback">please enter valid price </div>
         </div>
         
-        <div class="form-group half-width">
-          <label for="image">Listing Image</label>
-          <input type="text" id="image" name="listing[image][url]" class="form-control">
-        </div>
+      <div class="form-group half-width">
+          <label for="image">Upload Image</label>
+          <input type="file" id="image" name="image" class="form-control" required>
+          <div class="invalid-feedback">please choose a photo</div>
       </div>
-      
+      </div>
+
       <div class="form-row">
         <div class="form-group half-width">
           <label for="location">Location (City)</label>

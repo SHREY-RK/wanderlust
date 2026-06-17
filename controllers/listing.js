@@ -23,9 +23,14 @@ module.exports.newForm = (req, res) => {
 
 module.exports.sendNewData = async (req, res, next) => {
   const newListing = req.body.listing;
+  newListing.image = {
+    url: req.file.path,
+    filename: req.file.filename,
+  };
   if (res.locals.currUser) {
     newListing.owner = res.locals.currUser._id;
   }
+
   await Listing.insertOne(newListing);
   req.flash("message", "Successfully insert property.");
   res.redirect("/listings");
@@ -43,20 +48,19 @@ module.exports.editForm = async (req, res) => {
 
 module.exports.editData = async (req, res) => {
   let { id } = req.params;
-  let { description, price, url } = req.body;
-  if (price != "") {
-    await Listing.findByIdAndUpdate(id, { price: price });
+  let { description, price } = req.body;
+  
+  let updateData = {};
+
+  if (price) updateData.price = price;
+  if (description) updateData.description = description;
+
+  if (req.file) {
+    updateData["image.url"] = req.file.path;
+    updateData["image.filename"] = req.file.filename;
   }
-  if (description != "") {
-    await Listing.findByIdAndUpdate(id, { description: description });
-  }
-  if (url != "") {
-    await Listing.findByIdAndUpdate(
-      id,
-      { "image.url": url },
-      { returnDocument: "after" },
-    );
-  }
+
+  await Listing.findByIdAndUpdate(id, updateData);
   req.flash("message", "Listing updated.");
   res.redirect(`/listings/${id}/view`);
 };

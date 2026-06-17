@@ -10,6 +10,10 @@ const Review = require("../models/review.js");
 
 const listingControllers = require("../controllers/listing.js");
 
+const multer = require("multer");
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
+
 // validation of schema
 const validateListing = (req, res, next) => {
   let result = listingSchema.validate(req.body);
@@ -21,13 +25,15 @@ const validateListing = (req, res, next) => {
   }
 };
 
-router.route("/")
+router
+  .route("/")
   .get(listingControllers.index)
   .post(
     isLoggedIn,
+    upload.single("image"),
     validateListing,
     wrapAsync(listingControllers.sendNewData),
-  );;
+  );
 
 
 
@@ -51,6 +57,7 @@ router.put(
   "/:id",
   isLoggedIn,
   isOwner,
+  upload.single("image"),
   wrapAsync(listingControllers.editData),
 );
 

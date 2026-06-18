@@ -1,4 +1,5 @@
 <% layout("/layouts/boilerplate.ejs") %>
+
 <link rel="stylesheet" href="/css/viewStyle.css">
 <link rel="stylesheet" href="/css/rating.css">
 
@@ -119,7 +120,9 @@
         <% } %>
         <hr>
         <div class="show-review mt-3 mb-3">
-            <h4>All review</h4>
+            <% if(data.reviews.length>0){ %> 
+                <h4>All review</h4>
+            <% } %>
             <div class="row">
 
                 <% for (review of data.reviews) { %>
@@ -135,5 +138,13 @@
                     </div>
                 <% } %>
             </div>
+        </div>
+        <h3>Where you'll be</h3>
+        <div
+            id="map"
+            data-location="<%= data.location %>"
+            data-country="<%= data.country %>"
+            data-lon="<%= data.geometry.coordinates[0] %>"
+            data-lat="<%= data.geometry.coordinates[1] %>">
         </div>
     </main>

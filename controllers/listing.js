@@ -1,11 +1,13 @@
 const Listing = require("../models/listing.js");
 
 module.exports.index = async (req, res) => {
+  req.session.url = req.originalUrl;
   let data = await Listing.find();
   res.render("listing/index.ejs", { data });
 };
 
 module.exports.view = async (req, res) => {
+  req.session.url = req.originalUrl;
   let { id } = req.params;
   const data = await Listing.findById(id)
     .populate({ path: "reviews", populate: { path: "author" } })
@@ -22,7 +24,16 @@ module.exports.newForm = (req, res) => {
 };
 
 module.exports.sendNewData = async (req, res, next) => {
-  const newListing = req.body.listing;
+  const { longitude, latitude } = req.body.geometry;
+
+  const newListing = {
+    ...req.body.listing,
+    geometry: {
+      type: "Point",
+      coordinates: [longitude, latitude],
+    },
+  };
+
   newListing.image = {
     url: req.file.path,
     filename: req.file.filename,
@@ -30,6 +41,7 @@ module.exports.sendNewData = async (req, res, next) => {
   if (res.locals.currUser) {
     newListing.owner = res.locals.currUser._id;
   }
+  
 
   await Listing.insertOne(newListing);
   req.flash("message", "Successfully insert property.");

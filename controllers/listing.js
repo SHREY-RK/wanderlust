@@ -6,6 +6,15 @@ module.exports.index = async (req, res) => {
   res.render("listing/index.ejs", { data });
 };
 
+module.exports.categoryData = async (req, res) => {
+  let {id: categoryId } = req.params;
+  let categoryData = await Listing.find({ "category": categoryId });
+  // console.log(categoryData);
+  // res.send(categoryData);
+  res.render("listing/category.ejs", { categoryId, categoryData });
+  
+}
+
 module.exports.view = async (req, res) => {
   req.session.url = req.originalUrl;
   let { id } = req.params;

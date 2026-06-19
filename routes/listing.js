@@ -35,6 +35,7 @@ router
     wrapAsync(listingControllers.sendNewData),
   );
 
+router.get("/category/:id", listingControllers.categoryData);
 
 
 //for detail view of property

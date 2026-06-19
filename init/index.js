@@ -13,7 +13,11 @@ mongoose.connect(MONGO_URL)
 const initDB = async ()=> {
     await Listing.deleteMany({});
     const newData = initData.data.map((obj) => {
-        return { ...obj, owner: "6a309475c1d3ab8f96f1af14"};
+        return {
+          ...obj,
+          owner: "6a309475c1d3ab8f96f1af14",
+          category: "Trending",
+        };
     })
     await Listing.insertMany(newData);
     console.log("data saved successfully");

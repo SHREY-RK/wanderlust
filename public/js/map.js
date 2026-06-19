@@ -1,7 +1,7 @@
 async function initMap() {
   const mapDiv = document.querySelector("#map");
-
   let lat, lon;
+  let title = mapDiv.dataset.title;
 
   if (mapDiv.dataset.lat && mapDiv.dataset.lon) {
     lat = Number(mapDiv.dataset.lat);
@@ -26,7 +26,11 @@ async function initMap() {
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-  L.marker([lat, lon]).addTo(map);
+  L.marker([lat, lon]).addTo(map).bindTooltip(`<h5>${title}</h5><p>Exact location will be proveded after booking</p>`);
+
+  L.circle([lat, lon], {
+    radius: 10000,
+  }).addTo(map);
 }
 
 initMap();

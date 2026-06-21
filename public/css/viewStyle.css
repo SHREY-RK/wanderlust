@@ -35,6 +35,9 @@ body {
     text-decoration: underline;
     cursor: pointer;
 }
+.property-location:hover {
+    color: #ff385c; /* Give it your brand color on interaction */
+}
 
 /* Hero Image */
 .property-hero {
@@ -165,22 +168,28 @@ body {
 }
 
 /* form btns */
+
 .btns {
+    display: flex;
+    gap: 1rem; /* Spacing between buttons */
     margin-top: 5%;
     margin-bottom: 5rem;
 }
+
+.edit, .delete {
+ 
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
 .edit {
-    width: 4.2rem;
-    background-color: #000 !important;
-    margin-left: 4%;
-}
-.edit a{
-    margin: 0;
-    color: #fff !important;
+    background-color: #222222 !important; 
+} 
+.edit a {
     text-decoration: none;
-}
-.delete {
-    margin-left: 38%;
+    color: white;
 }
 
 /* Responsive Design for Mobile (Stacks everything) */
@@ -197,6 +206,9 @@ body {
     /* Make the widget normal on mobile instead of sticky */
     .booking-widget {
         position: static;
+    }
+    #map {
+        max-height: 250px; /* Shorter on mobile so users can scroll past */
     }
 }
 

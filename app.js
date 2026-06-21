@@ -16,6 +16,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const session = require("express-session");
+const {MongoStore} = require("connect-mongo");
 const flash = require("connect-flash");
 
 const passport = require("passport");
@@ -37,8 +38,26 @@ app.use(methodOverride("_method"));
 // const Listing = require("./models/listing.js");
 // const Review = require("./models/review.js");
 
+// connect with database
+const dbUrl = process.env.ATLASDB_URL;
+mongoose.connect(dbUrl).then(() => {
+  console.log("database connected");
+});
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 60 * 60,
+});
+store.on("error", (error) => {
+  console.log("Error in session store", error);
+  
+})
 const sessionOption = {
-  secret: "mysupersecretkey",
+  store:store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -47,6 +66,8 @@ const sessionOption = {
     httpOnly: true,
   },
 };
+
+
 app.use(session(sessionOption));
 app.use(flash());
 
@@ -81,12 +102,6 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-// connect with database
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
-mongoose.connect(MONGO_URL).then(() => {
-  console.log("database connected");
-});
 
 //if request not satisfy
 app.use((req, res, next) => {

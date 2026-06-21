@@ -4,40 +4,25 @@ body {
     background-color: #efe9e9 !important;
     min-height: 100vh;
     margin: 0;
-    /* padding: 20px; */
     color: #fff;
 }
-/* .add a{
-    text-decoration: none;
-    border: 1px solid whitesmoke;
-    padding: 0.8rem;
-    border-radius: 1rem;
-    margin: 1rem;
-    position: absolute;
-    top: 2px;
-    right: 3rem;
-    background-color: white;
-    color: black;
-} */
-/* .add {
-    text-align: right;
-} */
+
  #filters {
-    overflow-x: auto;
+    /* overflow-x: auto;
     scrollbar-width: none;
-    gap: 1rem;
+    gap: 1rem; */
     display: flex;
    
-    padding: 1rem 1.5rem;
-    margin: 1rem 2rem;
+    /* padding: 1rem 1.5rem; */
+    margin-left: 1rem;
 
-    background: white;
+    /* background: white; */
     border-bottom: 1px solid #eaeaea;
-    border-radius: 20px;
+    /* border-radius: 20px; */
  }
- #filters::-webkit-scrollbar {
+ /* #filters::-webkit-scrollbar {
     display: none;
-}
+} */
  .filter {
     align-self: center;
     text-align: center;
@@ -68,20 +53,25 @@ body {
     opacity: 1;
 }
 .main {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    display: grid ; 
+    /* auto-fill creates as many columns as will fit on the screen */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 24px;
+    padding: 20px 24px;
+    width: 100%; 
+    max-width: 100vw;
+
 }
 /* Card Container */
 .listing-card {
     background: #ffffff;
     border-radius: 16px;
     width: 100%;
-    max-width: 330px;
+    height: 100%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 20px;
+    margin: 0; 
 }
 
 .listing-card:hover {
@@ -201,22 +191,19 @@ body {
 
 @media (max-width: 991px) {
     .listing-card {
-        max-width: 150px;
-        max-height: 200px;
-        margin: 6px 1px;
-        
+        max-width: 100%; /* Take up the full screen width */
+        margin: 12px 0; /* Vertical spacing only */
+        max-height: none; /* Remove height restrictions */
     }
-    .card-location, .card-description{
-        display: none;
+    
+    /* REMOVE the display: none for location and description! */
+    .card-location, .card-description {
+        display: flex; /* Restore visibility */
     }
+    
     .card-image-wrapper {
-        max-height: 75%;
-    }
-    .card-title {
-        font-size: 1rem;
-    }
-    .card-badge {
-        font-size: 0.4rem;
+        height: 65vw; /* Scales perfectly based on phone screen size */
+        max-height: 300px;
     }
     
 }

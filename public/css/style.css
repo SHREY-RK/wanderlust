@@ -8,11 +8,10 @@ body {
 }
 
  #filters {
-    /* overflow-x: auto;
-    scrollbar-width: none;
+    overflow-x: auto;
+    /* scrollbar-width: none;
     gap: 1rem; */
     display: flex;
-   
     /* padding: 1rem 1.5rem; */
     margin-left: 1rem;
 
@@ -205,5 +204,5 @@ body {
         height: 65vw; /* Scales perfectly based on phone screen size */
         max-height: 300px;
     }
-    
+
 }

@@ -210,8 +210,18 @@ body {
     #map {
         max-height: 250px; /* Shorter on mobile so users can scroll past */
     }
+
+    #back {
+        padding: 0 !important;
+    }
 }
 
+@media (min-width: 768px) {
+    #back {
+        display: none;
+    }
+
+}
 #map {
     height: 500px;
     width: 100%;
